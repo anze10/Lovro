@@ -1,0 +1,7 @@
+tanstack:
+    server syde rendering:
+prisma seed (za izdelke je narjeno )
+stil 
+mentin.dev ==> prisma 
+shadcn ui
+animacije
