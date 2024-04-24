@@ -1,13 +1,13 @@
 import { Box } from "@mui/material";
 import Link from "next/link";
 import Navbar from './_components/Navbar';
-import Galerija from "./_components/Galerija";
+// import Galerija from "./_components/Galerija";
 import Footer from './_components/foter';
-import Prpark from './_components/Prpark';
+// import Prpark from './_components/Prpark';
 import Typography from '@mui/material/Typography';
 import Content from './_components/Content';
 import Vsebina from './_components/Vsebina';
-import Ravbi from "./_components/Ravbi";
+// import Ravbi from "./_components/Ravbi";
 import Zacetek_slika from "./_components/Zacetek_slika";
 import Trgovinca from "./_components/Trgovinca";
 import Storitve from "./_components/Storitve";
