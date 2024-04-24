@@ -16,6 +16,9 @@ import Mail from './_components/Mail';
 import Novice from "./_components/Novice";
 import Onas from "./_components/Onas";
 import Reference from "./_components/Reference";
+import GremoGor from './_components/GremoGor';
+
+// ... in your render method
 
 export default async function HomePage() {
   return (
@@ -54,6 +57,8 @@ export default async function HomePage() {
       <Box>
         <Footer></Footer>
       </Box>
+
+      <GremoGor />
 
     </main>
   );
