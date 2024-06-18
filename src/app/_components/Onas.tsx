@@ -1,17 +1,10 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/Lra7MsXOyza
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
 import Link from "next/link"
-
 
 export default function Component() {
     return (
-        <div className="flex flex-col ">
-
+        <div className="flex flex-col justify-center items-center ">
             <section className="w-full py-12 md:py-24 lg:py-32 border-y">
-                <div className="container grid items-start gap-4 px-4 md:px-6 lg:grid-cols-2 lg:gap-10 lg:items-center">
+                <div className="container grid items-start gap-4 px-4 md:px-6 lg:grid-cols-2 lg:gap-10 lg:items-center mx-auto">
                     <div className="flex flex-col items-start space-y-4">
                         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">O nas</h2>
                         <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
@@ -23,7 +16,6 @@ export default function Component() {
                         >
                             Izvedi več
                         </Link>
-
                     </div>
                     <img
                         alt="public/test_slika_1.jpg"
@@ -34,7 +26,7 @@ export default function Component() {
                     />
                 </div>
             </section>
-
         </div>
     )
 }
+
