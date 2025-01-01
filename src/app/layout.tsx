@@ -16,7 +16,7 @@ const libre_franklin = Libre_Franklin({
   variable: '--font-libre_franklin',
 });
 const cormorant_garamond = Cormorant_Garamond({
-  weight: "400", // Add the missing weight property with a string value
+  weight: "400",
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-cormorant_garamond',

@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { Box, Fab } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
@@ -37,7 +38,10 @@ const ScrollTop = () => {
             }}
         >
             {isVisible &&
-                <Fab color="secondary" onClick={scrollToTop}>
+                <Fab 
+                    onClick={scrollToTop} 
+                    sx={{ backgroundColor: '#6ca748', '&:hover': { backgroundColor: '#5a9b3e' } }}
+                >
                     <KeyboardArrowUpIcon />
                 </Fab>
             }
