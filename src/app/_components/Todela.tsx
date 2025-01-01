@@ -45,10 +45,10 @@ export default function HomePage() {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
-        <AppBar position="static" sx={{ bgcolor: 'grey.800', boxShadow: 3 }}>
+        <AppBar position="static" sx={{ bgcolor: '#1f2937', boxShadow: 2, py: 2 }}>
           <Container>
             <Toolbar disableGutters>
-              <Box sx={{ flexGrow: 1 }}>
+              <Box sx={{ flexGrow: 1, mx: -20 }}>
                 <Link href="/">
                   <img src="/C1_LOGOTIP RAVBAR_vodoraven_ no 01.png" alt="Ravbar Parketarstvo Logo" style={{ height: 64 }} />
                 </Link>
@@ -63,7 +63,7 @@ export default function HomePage() {
                   {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
                 </IconButton>
               ) : (
-                <Box component="nav">
+                <Box component="nav" sx={{ mr: -20 }}>
                   <Button
                     component={Link}
                     href="/o-nas"
@@ -249,7 +249,7 @@ export default function HomePage() {
               <Typography variant="h5" paragraph>
                 Z več kot 20 leti izkušenj vam zagotavljamo vrhunske rezultate
               </Typography>
-              <Button variant="contained" color="primary" size="large">
+              <Button variant="contained" color="primary" size="large" sx={{ color: 'common.white' }}>
                 Kontaktirajte nas
               </Button>
             </Box>
@@ -370,9 +370,9 @@ export default function HomePage() {
             </Container>
           </Box>
 
-          <Box sx={{ bgcolor: 'primary.main', color: 'primary.contrastText', py: 8 }}>
-            <Container>
-              <Typography variant="h4" align="center">
+          <Box sx={{ bgcolor: '#1f2937', color: 'primary.contrastText', py: 8 }}>
+            <Container sx={{ bgcolor: 'primary.main', textAlign: 'center', px: 4, py: 2, borderRadius: 2 }}>
+              <Typography variant="h5" align="center" sx={{ color: 'white' }}>
                 Z vrhunskim svetovanjem, prilagodljivostjo željam strank in strokovnostjo pri delu zagotavljamo rezultate, ki presegajo pričakovanja.
               </Typography>
             </Container>
@@ -550,7 +550,7 @@ export default function HomePage() {
               />
             </Box>
             <Box sx={{ mt: 4, bgcolor: 'primary.main', color: 'primary.contrastText', p: 3, borderRadius: 2 }}>
-              <Typography variant="body1" align="center">
+              <Typography variant="body1" align="center" sx={{ color: 'white' }}>
                 Poleg tega smo uspešno izvedli projekte v več kot 300 hišah in stanovanjih po Sloveniji in širše.
               </Typography>
             </Box>
@@ -629,17 +629,18 @@ export default function HomePage() {
             </Container>
           </Box>
 
-          <Box sx={{ bgcolor: 'primary.main', color: 'primary.contrastText', py: 8 }}>
+
+        </main>
+
+        <Box component="footer" sx={{ bgcolor: 'grey.900', color: 'common.white', py: 6 }}>
+          <Box sx={{ bgcolor: 'primary.main', color: 'primary.contrastText', py: 2, my: 2, width: '80%', alignContent: 'center', margin: 'auto', borderRadius: 2 }}>
             <Container>
-              <Typography variant="h4" align="center">
+              <Typography variant="h4" align="center" sx={{ color: 'white' }}>
                 Zaupajte nam, da vaš dom oživimo s kakovostjo, ki traja.
               </Typography>
             </Container>
           </Box>
-        </main>
-
-        <Box component="footer" sx={{ bgcolor: 'grey.900', color: 'common.white', py: 6 }}>
-          <Container maxWidth="lg">
+          <Container maxWidth="lg" sx={{ paddingTop: 4 }}>
             <Grid container spacing={4}>
               <Grid item xs={12} md={4}>
                 <Typography variant="h6" gutterBottom>
