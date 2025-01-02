@@ -50,7 +50,7 @@ export default function ONas() {
         <section className="relative bg-gray-800 text-white py-20">
           <div className="absolute inset-0 overflow-hidden">
             <img
-              src="/placeholder.svg?height=400&width=1200&text=O+Nas+Background"
+              src="/parketar.jpg?height=400&width=1200&text=O+Nas+Background"
               alt="O Nas Background"
               className="w-full h-full object-cover"
             />
@@ -67,7 +67,7 @@ export default function ONas() {
             <h2 className="text-3xl font-bold mb-8 text-center">Naša zgodba</h2>
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="md:w-1/2">
-                <img src="/placeholder.svg?height=400&width=600&text=Naša+Zgodba" alt="Naša Zgodba" className="rounded-lg shadow-md w-full h-auto" />
+                <img src="/slikaena.jpg?height=400&width=600&text=Naša+Zgodba" alt="Naša Zgodba" className="rounded-lg shadow-md w-full h-auto" />
               </div>
               <div className="md:w-1/2">
                 <p className="text-gray-600 mb-4">
@@ -89,7 +89,7 @@ export default function ONas() {
             <h2 className="text-3xl font-bold mb-12 text-center">Naša ekipa</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
-                { name: 'Matej Ravbar', role: 'Ustanovitelj in vodja', image: '/placeholder.svg?height=300&width=300&text=Matej' },
+                { name: 'Matej Ravbar', role: 'Ustanovitelj in vodja', image: '/matejko.png?height=300&width=300&text=Matej' },
                 { name: 'Andrej Gorenc', role: 'Vodja montaže', image: '/placeholder.svg?height=300&width=300&text=Andrej' },
                 { name: 'Lovro Ravbar', role: 'Višji parketar', image: '/placeholder.svg?height=300&width=300&text=Lovro' },
               ].map((member) => (

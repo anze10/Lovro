@@ -20,7 +20,7 @@ export default function Storitve() {
     { 
       title: 'Polaganje parketa', 
       description: 'Strokovno polaganje vseh vrst parketa, vključno z masivnim, večslojnim in laminatnim parketom.',
-      image: '/placeholder.svg?height=300&width=400&text=Polaganje+Parketa'
+      image: '/polaganje.png?height=300&width=400&text=Polaganje+Parketa'
     },
     { 
       title: 'Brušenje parketa', 
@@ -45,7 +45,7 @@ export default function Storitve() {
     { 
       title: 'Vzdrževanje parketa', 
       description: 'Redni pregledi in vzdrževalna dela za dolgotrajno ohranjanje kakovosti parketa.',
-      image: '/placeholder.svg?height=300&width=400&text=Vzdrževanje+Parketa'
+      image: '/vzdrzevanje.png?height=300&width=400&text=Vzdrževanje+Parketa'
     },
   ]
 
@@ -83,7 +83,7 @@ export default function Storitve() {
         <section className="relative bg-gray-800 text-white py-20">
           <div className="absolute inset-0 overflow-hidden">
             <img
-              src="/placeholder.svg?height=400&width=1200&text=Storitve+Background"
+              src="/slikaena.jpg?height=400&width=1200&text=Storitve+Background"
               alt="Storitve Background"
               className="w-full h-full object-cover"
             />
@@ -140,9 +140,11 @@ export default function Storitve() {
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-8">Potrebujete naše storitve?</h2>
             <p className="text-xl mb-8">Kontaktirajte nas za brezplačen ogled in ponudbo</p>
+            <a href="kontakt">
             <Button variant="contained" style={{ backgroundColor: '#6CA748', color: 'white' }}>
               Kontaktirajte nas
             </Button>
+            </a>
           </div>
         </section>
       </main>

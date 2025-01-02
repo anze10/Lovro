@@ -110,9 +110,11 @@ export default function HomePage() {
                   Specializirani smo za polaganje, obnovo in vzdrževanje vseh vrst parketa. Naš tim izkušenih strokovnjakov združuje tradicionalne tehnike z najnovejšimi tehnologijami, kar zagotavlja vrhunske rezultate pri vsakem projektu, ne glede na njegovo velikost ali zahtevnost.
                 </p>
                 <div className="text-center">
+                  <a href="onas">
                   <Button className="bg-[#6CA748] hover:bg-[#5A8E3A] text-white">
                     Izvedi več
                   </Button>
+                  </a>
                 </div>
               </div>
               <div className="md:w-1/2 order-1 md:order-2">
