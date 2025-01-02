@@ -1,113 +1,272 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
-import { Button } from "@mui/material"
-import { FaPhone, FaEnvelope, FaFacebookF, FaMapMarkerAlt, FaBars, FaTimes } from 'react-icons/fa'
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+  Button,
+  Container,
+  Grid,
+  Card,
+  CardContent,
+  CardMedia,
+  Box,
+  useMediaQuery,
+  Chip
+} from "@mui/material";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Menu as MenuIcon, Close as CloseIcon, Phone, Email, Facebook, LocationOn } from '@mui/icons-material';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#6CA748',
+    },
+    secondary: {
+      main: '#5A8E3A',
+    },
+    background: {
+      default: '#f5f5f5',
+    },
+  },
+});
 
 export default function HomePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const navItems = [
-    { name: 'O NAS', href: '/onas' },
-    { name: 'STORITVE', href: '/storitve' },
-    { name: 'REFERENCE', href: '/reference' },
-    { name: 'NOVICE', href: '/novice' },
-    { name: 'KONTAKT', href: '/kontakt' },
-  ];
-
-  const services = [
-    'Polaganje parketa',
-    'Brušenje parketa',
-    'Lakiranje parketa',
-    'Oljenje parketa',
-    'Obnova starega parketa',
-    'Vzdrževanje parketa',
-  ];
-
-  const references = [
-    "Okrožno sodišče Novo mesto",
-    "Okrožno državno tožilstvo Novo mesto",
-    "Okrožno državno tožilstvo v Ljubljani",
-    "Okrajno sodišče v Grosupljem",
-    "Okrajno sodišče v Kočevju",
-    "Okrožno sodišče v Kranju",
-    "Dolenjska projektiva Novo mesto",
-    "CGP Novo mesto",
-    "Ministrstvo za obrambo – Uprava za obrambo Novo mesto",
-    "Terme Čatež",
-    "Mega d.o.o. Kranj",
-    "Lekarna Novak, Novo mesto",
-    "Vrtec pedenjped Novo Mesto",
-    "Mikrografija d.o.o. Novo Mesto",
-    "AS invest d.o.o."
-  ];
-
-  const news = [
-    { title: "Novi trendi v parketarstvu za leto 2023", excerpt: "Odkrijte najnovejše trende v svetu parketa in lesenih talnih oblog za leto 2023.", link: "/novice/trendi-2023" },
-    { title: "Pravilno vzdrževanje parketa v poletnih mesecih", excerpt: "Nasveti za ohranjanje lepote vašega parketa med vročimi poletnimi dnevi.", link: "/novice/vzdrzevanje-poleti" },
-    { title: "Zaključen projekt: Obnova parketa v Narodnem muzeju", excerpt: "Oglejte si našo najnovejšo obnovo parketa v prestižnem Narodnem muzeju.", link: "/novice/projekt-narodni-muzej" }
-  ];
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-gray-800 text-white shadow-sm relative">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/">
-            <img src="/C1_LOGOTIP RAVBAR_vodoraven_ no 01.png" alt="Ravbar Parketarstvo Logo" className="h-16" />
-          </Link>
-          <button 
-            className="md:hidden text-white focus:outline-none"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-          </button>
-          <nav className={`${isMenuOpen ? 'block' : 'hidden'} md:block absolute md:relative top-full left-0 w-full md:w-auto bg-gray-800 md:bg-transparent shadow-md md:shadow-none z-50`}>
-            <ul className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 p-4 md:p-0">
-              {navItems.map((item) => (
-                <li key={item.name}>
-                  <Link 
-                    href={item.href}
-                    className="text-white hover:text-[#6CA748] block px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ease-in-out border-2 border-transparent hover:border-[#6CA748]"
+    <ThemeProvider theme={theme}>
+      <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
+        <AppBar position="static" sx={{ bgcolor: '#1f2937', boxShadow: 2, py: 2 }}>
+          <Container>
+            <Toolbar disableGutters>
+              <Box sx={{ flexGrow: 1, mx: -20 }}>
+                <Link href="/">
+                  <img src="/C1_LOGOTIP RAVBAR_vodoraven_ no 01.png" alt="Ravbar Parketarstvo Logo" style={{ height: 64 }} />
+                </Link>
+              </Box>
+              {isMobile ? (
+                <IconButton
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
+                  {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+                </IconButton>
+              ) : (
+                <Box component="nav" sx={{ mr: -20 }}>
+                  <Button
+                    component={Link}
+                    href="/o-nas"
+                    sx={{
+                      color: 'white',
+                      '&:hover': {
+                        color: 'primary.main',
+                        bgcolor: 'transparent',
+                        border: '2px solid',
+                        borderColor: 'primary.main',
+                      },
+                      mx: 1,
+                      px: 2,
+                      py: 1,
+                      borderRadius: '4px',
+                      transition: 'all 0.2s',
+                    }}
                   >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
-      </header>
+                    O NAS
+                  </Button>
+                  <Button
+                    component={Link}
+                    href="/storitve"
+                    sx={{
+                      color: 'white',
+                      '&:hover': {
+                        color: 'primary.main',
+                        bgcolor: 'transparent',
+                        border: '2px solid',
+                        borderColor: 'primary.main',
+                      },
+                      mx: 1,
+                      px: 2,
+                      py: 1,
+                      borderRadius: '4px',
+                      transition: 'all 0.2s',
+                    }}
+                  >
+                    STORITVE
+                  </Button>
+                  <Button
+                    component={Link}
+                    href="/reference"
+                    sx={{
+                      color: 'white',
+                      '&:hover': {
+                        color: 'primary.main',
+                        bgcolor: 'transparent',
+                        border: '2px solid',
+                        borderColor: 'primary.main',
+                      },
+                      mx: 1,
+                      px: 2,
+                      py: 1,
+                      borderRadius: '4px',
+                      transition: 'all 0.2s',
+                    }}
+                  >
+                    REFERENCE
+                  </Button>
+                  <Button
+                    component={Link}
+                    href="/novice"
+                    sx={{
+                      color: 'white',
+                      '&:hover': {
+                        color: 'primary.main',
+                        bgcolor: 'transparent',
+                        border: '2px solid',
+                        borderColor: 'primary.main',
+                      },
+                      mx: 1,
+                      px: 2,
+                      py: 1,
+                      borderRadius: '4px',
+                      transition: 'all 0.2s',
+                    }}
+                  >
+                    NOVICE
+                  </Button>
+                  <Button
+                    component={Link}
+                    href="/kontakt"
+                    sx={{
+                      color: 'white',
+                      '&:hover': {
+                        color: 'primary.main',
+                        bgcolor: 'transparent',
+                        border: '2px solid',
+                        borderColor: 'primary.main',
+                      },
+                      mx: 1,
+                      px: 2,
+                      py: 1,
+                      borderRadius: '4px',
+                      transition: 'all 0.2s',
+                    }}
+                  >
+                    KONTAKT
+                  </Button>
+                </Box>
+              )}
+            </Toolbar>
+          </Container>
+        </AppBar>
 
-      <main>
-      <section className="relative text-white py-80">
-          <div className="absolute inset-0 overflow-hidden">
-            <img
-              src="/test_slika_1.jpg"
-              alt="Parket Background"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-55"></div>
-          </div>
-          <div className="container mx-auto px-4 text-center relative z-10">
-            <h2 className="text-5xl font-bold mb-6">Kakovostno polaganje in obnova parketa</h2>
-            <p className="text-2xl mb-10">Z več kot 20 leti izkušenj vam zagotavljamo vrhunske rezultate</p>
-            <Button className="bg-[#6CA748] hover:bg-[#5A8E3A] text-white text-lg py-3 px-8">
-              Kontaktirajte nas
-            </Button>
-          </div>
-        </section>
+        <Drawer
+          anchor="right"
+          open={isMobile && isMenuOpen}
+          onClose={() => setIsMenuOpen(false)}
+        >
+          <List>
+            <ListItem
+              button
+              component={Link}
+              href="/o-nas"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <ListItemText primary="O NAS" />
+            </ListItem>
+            <ListItem
+              button
+              component={Link}
+              href="/storitve"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <ListItemText primary="STORITVE" />
+            </ListItem>
+            <ListItem
+              button
+              component={Link}
+              href="/reference"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <ListItemText primary="REFERENCE" />
+            </ListItem>
+            <ListItem
+              button
+              component={Link}
+              href="/novice"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <ListItemText primary="NOVICE" />
+            </ListItem>
+            <ListItem
+              button
+              component={Link}
+              href="/kontakt"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <ListItemText primary="KONTAKT" />
+            </ListItem>
+          </List>
+        </Drawer>
 
-        <section id="about" className="py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-8 text-center">O nas</h2>
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="md:w-1/2 order-2 md:order-1">
-                <p className="text-gray-600 mb-4">
+        <main>
+          <Box
+            sx={{
+              position: 'relative',
+              height: '80vh',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'common.white',
+              '&::before': {
+                content: '""',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundImage: 'url("/test_slika_1.jpg")',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                filter: 'brightness(0.45)',
+              },
+            }}
+          >
+            <Box sx={{ position: 'relative', textAlign: 'center' }}>
+              <Typography variant="h2" component="h1" gutterBottom>
+                Kakovostno polaganje in obnova parketa
+              </Typography>
+              <Typography variant="h5" paragraph>
+                Z več kot 20 leti izkušenj vam zagotavljamo vrhunske rezultate
+              </Typography>
+              <Button variant="contained" color="primary" size="large" sx={{ color: 'common.white' }}>
+                Kontaktirajte nas
+              </Button>
+            </Box>
+          </Box>
+
+          <Container maxWidth="lg" sx={{ py: 8 }}>
+            <Typography variant="h3" component="h2" align="center" gutterBottom>
+              O nas
+            </Typography>
+            <Grid container spacing={4} alignItems="center">
+              <Grid item xs={12} md={6}>
+                <Typography paragraph>
                   Parketarstvo Ravbar je družinsko podjetje s skoraj 30 let izkušenj v svetu lesenih talnih oblog. Naša strast do lesa in predanost kakovosti sta temelj našega dela, ki ga opravljamo z največjo skrbnostjo in natančnostjo.
-                </p>
-                <p className="text-gray-600 mb-6">
+                </Typography>
+                <Typography paragraph>
                   Specializirani smo za polaganje, obnovo in vzdrževanje vseh vrst parketa. Naš tim izkušenih strokovnjakov združuje tradicionalne tehnike z najnovejšimi tehnologijami, kar zagotavlja vrhunske rezultate pri vsakem projektu, ne glede na njegovo velikost ali zahtevnost.
+<<<<<<< HEAD
                 </p>
                 <div className="text-center">
                   <a href="onas">
@@ -133,125 +292,439 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+=======
+                </Typography>
+                <Box textAlign="center">
+                  <Button variant="contained" color="primary">
+                    Izvedi več
+                  </Button>
+                </Box>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Box
+                  component="img"
+                  src="/parketar.jpg"
+                  alt="Tile Flooring"
+                  sx={{
+                    width: '100%',
+                    borderRadius: 2,
+                    boxShadow: 3,
+                  }}
+                />
+              </Grid>
+            </Grid>
+          </Container>
+>>>>>>> c60105e98b33abc39fbd0f45b4d0dc1ee98246a5
 
-        <section id="services" className="py-16 bg-gray-100">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-12 text-center">Naše storitve</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((service, index) => (
-                <div key={index} className="bg-white p-8 rounded-lg shadow-lg">
-                  <h3 className="text-2xl font-semibold mb-4 text-center">{service}</h3>
-                  <p className="text-gray-600 text-center">Zagotavljamo visoko kakovostno {service.toLowerCase()} z uporabo najboljših materialov in tehnik.</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+          <Box sx={{ bgcolor: 'grey.100', py: 8 }}>
+            <Container maxWidth="lg">
+              <Typography variant="h3" component="h2" align="center" gutterBottom>
+                Naše storitve
+              </Typography>
+              <Grid container spacing={4}>
+                <Grid item xs={12} sm={6} md={4}>
+                  <Card>
+                    <CardContent>
+                      <Typography variant="h5" component="h3" gutterBottom align="center">
+                        Polaganje parketa
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" align="center">
+                        Zagotavljamo visoko kakovostno polaganje parketa z uporabo najboljših materialov in tehnik.
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                  <Card>
+                    <CardContent>
+                      <Typography variant="h5" component="h3" gutterBottom align="center">
+                        Brušenje parketa
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" align="center">
+                        Zagotavljamo visoko kakovostno brušenje parketa z uporabo najboljših materialov in tehnik.
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                  <Card>
+                    <CardContent>
+                      <Typography variant="h5" component="h3" gutterBottom align="center">
+                        Lakiranje parketa
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" align="center">
+                        Zagotavljamo visoko kakovostno lakiranje parketa z uporabo najboljših materialov in tehnik.
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                  <Card>
+                    <CardContent>
+                      <Typography variant="h5" component="h3" gutterBottom align="center">
+                        Oljenje parketa
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" align="center">
+                        Zagotavljamo visoko kakovostno oljenje parketa z uporabo najboljših materialov in tehnik.
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                  <Card>
+                    <CardContent>
+                      <Typography variant="h5" component="h3" gutterBottom align="center">
+                        Obnova starega parketa
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" align="center">
+                        Zagotavljamo visoko kakovostno obnovo starega parketa z uporabo najboljših materialov in tehnik.
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                  <Card>
+                    <CardContent>
+                      <Typography variant="h5" component="h3" gutterBottom align="center">
+                        Vzdrževanje parketa
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" align="center">
+                        Zagotavljamo visoko kakovostno vzdrževanje parketa z uporabo najboljših materialov in tehnik.
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              </Grid>
+            </Container>
+          </Box>
 
-        <section className="bg-gray-800 text-white py-16">
-          <div className="container mx-auto px-4">
-            <div className="bg-[#6CA748] text-white p-8 rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300">
-              <p className="text-2xl font-semibold text-center leading-relaxed">
+          <Box sx={{ bgcolor: '#1f2937', color: 'primary.contrastText', py: 8 }}>
+            <Container sx={{ bgcolor: 'primary.main', textAlign: 'center', px: 4, py: 2, borderRadius: 2 }}>
+              <Typography variant="h5" align="center" sx={{ color: 'white' }}>
                 Z vrhunskim svetovanjem, prilagodljivostjo željam strank in strokovnostjo pri delu zagotavljamo rezultate, ki presegajo pričakovanja.
-              </p>
-            </div>
-          </div>
-        </section>
+              </Typography>
+            </Container>
+          </Box>
 
-        <section id="references" className="py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-12 text-center">Naše Reference</h2>
-            <div className="flex flex-wrap justify-center gap-4">
-              {references.map((reference, index) => (
-                <div key={index} className="bg-white px-4 py-2 rounded-full shadow-md text-center">
-                  <p className="font-medium">{reference}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-12 bg-[#6CA748] text-white p-6 rounded-lg text-center">
-              <p className="text-lg">
+          <Container maxWidth="lg" sx={{ py: 8 }}>
+            <Typography variant="h3" component="h2" align="center" gutterBottom>
+              Naše Reference
+            </Typography>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 2 }}>
+              <Chip
+                label="Okrožno sodišče Novo mesto"
+                sx={{
+                  bgcolor: 'white',
+                  boxShadow: 1,
+                  m: 0.5,
+                  '&:hover': {
+                    bgcolor: 'primary.light',
+                  },
+                }}
+              />
+              <Chip
+                label="Okrožno državno tožilstvo Novo mesto"
+                sx={{
+                  bgcolor: 'white',
+                  boxShadow: 1,
+                  m: 0.5,
+                  '&:hover': {
+                    bgcolor: 'primary.light',
+                  },
+                }}
+              />
+              <Chip
+                label="Okrožno državno tožilstvo v Ljubljani"
+                sx={{
+                  bgcolor: 'white',
+                  boxShadow: 1,
+                  m: 0.5,
+                  '&:hover': {
+                    bgcolor: 'primary.light',
+                  },
+                }}
+              />
+              <Chip
+                label="Okrajno sodišče v Grosupljem"
+                sx={{
+                  bgcolor: 'white',
+                  boxShadow: 1,
+                  m: 0.5,
+                  '&:hover': {
+                    bgcolor: 'primary.light',
+                  },
+                }}
+              />
+              <Chip
+                label="Okrajno sodišče v Kočevju"
+                sx={{
+                  bgcolor: 'white',
+                  boxShadow: 1,
+                  m: 0.5,
+                  '&:hover': {
+                    bgcolor: 'primary.light',
+                  },
+                }}
+              />
+              <Chip
+                label="Okrožno sodišče v Kranju"
+                sx={{
+                  bgcolor: 'white',
+                  boxShadow: 1,
+                  m: 0.5,
+                  '&:hover': {
+                    bgcolor: 'primary.light',
+                  },
+                }}
+              />
+              <Chip
+                label="Dolenjska projektiva Novo mesto"
+                sx={{
+                  bgcolor: 'white',
+                  boxShadow: 1,
+                  m: 0.5,
+                  '&:hover': {
+                    bgcolor: 'primary.light',
+                  },
+                }}
+              />
+              <Chip
+                label="CGP Novo mesto"
+                sx={{
+                  bgcolor: 'white',
+                  boxShadow: 1,
+                  m: 0.5,
+                  '&:hover': {
+                    bgcolor: 'primary.light',
+                  },
+                }}
+              />
+              <Chip
+                label="Ministrstvo za obrambo – Uprava za obrambo Novo mesto"
+                sx={{
+                  bgcolor: 'white',
+                  boxShadow: 1,
+                  m: 0.5,
+                  '&:hover': {
+                    bgcolor: 'primary.light',
+                  },
+                }}
+              />
+              <Chip
+                label="Terme Čatež"
+                sx={{
+                  bgcolor: 'white',
+                  boxShadow: 1,
+                  m: 0.5,
+                  '&:hover': {
+                    bgcolor: 'primary.light',
+                  },
+                }}
+              />
+              <Chip
+                label="Mega d.o.o. Kranj"
+                sx={{
+                  bgcolor: 'white',
+                  boxShadow: 1,
+                  m: 0.5,
+                  '&:hover': {
+                    bgcolor: 'primary.light',
+                  },
+                }}
+              />
+              <Chip
+                label="Lekarna Novak, Novo mesto"
+                sx={{
+                  bgcolor: 'white',
+                  boxShadow: 1,
+                  m: 0.5,
+                  '&:hover': {
+                    bgcolor: 'primary.light',
+                  },
+                }}
+              />
+              <Chip
+                label="Vrtec pedenjped Novo Mesto"
+                sx={{
+                  bgcolor: 'white',
+                  boxShadow: 1,
+                  m: 0.5,
+                  '&:hover': {
+                    bgcolor: 'primary.light',
+                  },
+                }}
+              />
+              <Chip
+                label="Mikrografija d.o.o. Novo Mesto"
+                sx={{
+                  bgcolor: 'white',
+                  boxShadow: 1,
+                  m: 0.5,
+                  '&:hover': {
+                    bgcolor: 'primary.light',
+                  },
+                }}
+              />
+              <Chip
+                label="AS invest d.o.o."
+                sx={{
+                  bgcolor: 'white',
+                  boxShadow: 1,
+                  m: 0.5,
+                  '&:hover': {
+                    bgcolor: 'primary.light',
+                  },
+                }}
+              />
+            </Box>
+            <Box sx={{ mt: 4, bgcolor: 'primary.main', color: 'primary.contrastText', p: 3, borderRadius: 2 }}>
+              <Typography variant="body1" align="center" sx={{ color: 'white' }}>
                 Poleg tega smo uspešno izvedli projekte v več kot 300 hišah in stanovanjih po Sloveniji in širše.
-              </p>
-            </div>
-          </div>
-        </section>
+              </Typography>
+            </Box>
+          </Container>
 
-        <section id="news" className="py-16 bg-gray-100">
-  <div className="container mx-auto px-4">
-    <h2 className="text-3xl font-bold mb-12 text-center">Novice</h2>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {news.map((item, index) => {
-        const images = ['/estrihi.jpg', '/vlaga.jpg', '/estrihi2.jpg'];
-        const imageSrc = images[index];
+          <Box sx={{ bgcolor: 'grey.100', py: 8 }}>
+            <Container maxWidth="lg">
+              <Typography variant="h3" component="h2" align="center" gutterBottom>
+                Novice
+              </Typography>
+              <Grid container spacing={4}>
+                <Grid item xs={12} sm={6} md={4}>
+                  <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <CardMedia
+                      component="img"
+                      height="200"
+                      image="/estrihi.jpg"
+                      alt="Novi trendi v parketarstvu za leto 2023"
+                    />
+                    <CardContent sx={{ flexGrow: 1 }}>
+                      <Typography gutterBottom variant="h5" component="h3">
+                        Novi trendi v parketarstvu za leto 2023
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" paragraph>
+                        Odkrijte najnovejše trende v svetu parketa in lesenih talnih oblog za leto 2023.
+                      </Typography>
+                      <Button component={Link} href="/novice/trendi-2023" variant="contained" color="primary">
+                        Preberi več
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                  <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <CardMedia
+                      component="img"
+                      height="200"
+                      image="/vlaga.jpg"
+                      alt="Pravilno vzdrževanje parketa v poletnih mesecih"
+                    />
+                    <CardContent sx={{ flexGrow: 1 }}>
+                      <Typography gutterBottom variant="h5" component="h3">
+                        Pravilno vzdrževanje parketa v poletnih mesecih
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" paragraph>
+                        Nasveti za ohranjanje lepote vašega parketa med vročimi poletnimi dnevi.
+                      </Typography>
+                      <Button component={Link} href="/novice/vzdrzevanje-poleti" variant="contained" color="primary">
+                        Preberi več
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                  <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <CardMedia
+                      component="img"
+                      height="200"
+                      image="/estrihi2.jpg"
+                      alt="Zaključen projekt: Obnova parketa v Narodnem muzeju"
+                    />
+                    <CardContent sx={{ flexGrow: 1 }}>
+                      <Typography gutterBottom variant="h5" component="h3">
+                        Zaključen projekt: Obnova parketa v Narodnem muzeju
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" paragraph>
+                        Oglejte si našo najnovejšo obnovo parketa v prestižnem Narodnem muzeju.
+                      </Typography>
+                      <Button component={Link} href="/novice/projekt-narodni-muzej" variant="contained" color="primary">
+                        Preberi več
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              </Grid>
+            </Container>
+          </Box>
 
-        return (
-          <div
-            key={index}
-            className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 flex flex-col"
-          >
-            <img
-              src={imageSrc}
-              alt={item.title}
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-6 flex-grow flex flex-col">
-              <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-              <p className="text-gray-600 mb-4 flex-grow">{item.excerpt}</p>
-              <div className="text-center">
-                <Link
-                  href={item.link}
-                  className="inline-block bg-[#6CA748] text-white py-2 px-4 rounded-md hover:bg-[#5A8E3A] transition-colors duration-300"
-                >
-                  Preberi več
-                </Link>
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  </div>
-</section>
 
+        </main>
 
-        <section id="contact" className="bg-gray-800 text-white py-16">
-          <div className="container mx-auto px-4">
-            <div className="bg-[#6CA748] text-white p-8 rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300">
-              <p className="text-2xl font-semibold text-center leading-relaxed">
+        <Box component="footer" sx={{ bgcolor: 'grey.900', color: 'common.white', py: 6 }}>
+          <Box sx={{ bgcolor: 'primary.main', color: 'primary.contrastText', py: 2, my: 2, width: '80%', alignContent: 'center', margin: 'auto', borderRadius: 2 }}>
+            <Container>
+              <Typography variant="h4" align="center" sx={{ color: 'white' }}>
                 Zaupajte nam, da vaš dom oživimo s kakovostjo, ki traja.
-              </p>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <footer className="bg-gray-800 text-white py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-between items-center">
-            <div className="w-full md:w-1/3 mb-4 md:mb-0">
-              <h3 className="font-bold">Parketarstvo Ravbar</h3>
-              <p>K Roku 139</p>
-              <p>8000, Novo Mesto</p>
-            </div>
-            <div className="w-full md:w-1/3 mb-4 md:mb-0 flex justify-center">
-              <img src="/C1_LOGOTIP RAVBAR_vodoraven_ no 01.png?height=90&width=120&text=RAVBAR" alt="Ravbar Parketarstvo Logo" className="h-20" />
-            </div>
-            <div className="w-full md:w-1/3 text-right">
-              <p><a href="tel:041726602" className="hover:text-[#6CA748]"><FaPhone className="inline mr-2" />041 726 602</a></p>
-              <p><a href="mailto:info@parket-ravbar.com" className="hover:text-[#6CA748]"><FaEnvelope className="inline mr-2" />info@parket-ravbar.com</a></p>
-              <p><a href="https://www.facebook.com/parketarstvoravbar" target="_blank" rel="noopener noreferrer" className="hover:text-[#6CA748]"><FaFacebookF className="inline mr-2" />Facebook</a></p>
-              <p><a href="#" className="hover:text-[#6CA748]"><FaMapMarkerAlt className="inline mr-2" />Prikaži zemljevid</a></p>
-            </div>
-          </div>
-          <div className="mt-8 text-center">
-            <p className="text-lg font-semibold mb-4">LES JE NARAVEN, PUSTIMO DA TAK TUDI OSTANE</p>
-          </div>
-          <div className="mt-4 text-center text-sm">
-            <p>&copy; {new Date().getFullYear()} parket-ravbar.com | <Link href="/piskotki" className="hover:underline">Piškotki</Link></p>
-            <p className="mt-2">Lovro Ravbar</p>
-          </div>
-        </div>
-      </footer>
-    </div>
+              </Typography>
+            </Container>
+          </Box>
+          <Container maxWidth="lg" sx={{ paddingTop: 4 }}>
+            <Grid container spacing={4}>
+              <Grid item xs={12} md={4}>
+                <Typography variant="h6" gutterBottom>
+                  Parketarstvo Ravbar
+                </Typography>
+                <Typography variant="body2">
+                  K Roku 139
+                  <br />
+                  8000, Novo Mesto
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={4} sx={{ display: 'flex', justifyContent: 'center' }}>
+                <img src="/C1_LOGOTIP RAVBAR_vodoraven_ no 01.png" alt="Ravbar Parketarstvo Logo" style={{ height: 80 }} />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Typography variant="body2" align="right">
+                  <Link href="tel:041726602" color="inherit" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                    <Phone sx={{ mr: 1 }} /> 041 726 602
+                  </Link>
+                </Typography>
+                <Typography variant="body2" align="right">
+                  <Link href="mailto:info@parket-ravbar.com" color="inherit" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                    <Email sx={{ mr: 1 }} /> info@parket-ravbar.com
+                  </Link>
+                </Typography>
+                <Typography variant="body2" align="right">
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                    <Link href="https://www.facebook.com/parketarstvoravbar" target="_blank" rel="noopener noreferrer" color="inherit">
+                      <Facebook sx={{ mr: 1 }} /> Facebook
+                    </Link>
+                  </Box>
+                </Typography>
+                <Typography variant="body2" align="right">
+                  <Link href="#" color="inherit" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                    <LocationOn sx={{ mr: 1 }} /> Prikaži zemljevid
+                  </Link>
+                </Typography>
+              </Grid>
+            </Grid>
+            <Box sx={{ mt: 4, textAlign: 'center' }}>
+              <Typography variant="h6" gutterBottom>
+                LES JE NARAVEN, PUSTIMO DA TAK TUDI OSTANE
+              </Typography>
+            </Box>
+            <Box sx={{ mt: 2, textAlign: 'center' }}>
+              <Typography variant="body2">
+                &copy; {new Date().getFullYear()} parket-ravbar.com | <Link href="/piskotki" color="inherit">Piškotki</Link>
+              </Typography>
+              <Typography variant="body2" sx={{ mt: 1 }}>
+                Lovro Ravbar
+              </Typography>
+            </Box>
+          </Container>
+        </Box>
+      </Box>
+    </ThemeProvider>
   )
 }
+
