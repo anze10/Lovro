@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model ProductCategory {
+  CategoryID   Int    @id @default(autoincrement())
+  Name         String
+  Description  String?
+  Products     Product[]
+}
+
+model Product {
+  ProductID   Int     @id @default(autoincrement())
+  Name        String
+  Description String?
+  Price       Decimal @db.Decimal(10,2)
+  CategoryID  Int?
+  Category    ProductCategory? @relation(fields: [CategoryID], references: [CategoryID])
+  OrderedProducts OrderedProduct[]
+}
+
+model Service {
+  ServiceID   Int    @id @default(autoincrement())
+  Name        String
+  Description String?
+  Price       Decimal @db.Decimal(10,2)
+  OrderedServices OrderedService[]
+}
+
+model Customer {
+  CustomerID   Int    @id @default(autoincrement())
+  FirstName    String
+  LastName     String
+  Email        String?
+  PhoneNumber  String?
+  Address      String?
+  Orders       Order[]
+}
+
+model Order {
+  OrderID      Int      @id @default(autoincrement())
+  CustomerID   Int
+  OrderDate    DateTime
+  Status       String
+  Customer     Customer @relation(fields: [CustomerID], references: [CustomerID])
+  OrderedProducts OrderedProduct[]
+  OrderedServices OrderedService[]
+}
+
+model OrderedProduct {
+  OrderID    Int
+  ProductID  Int
+  Quantity   Int
+  Price      Decimal @db.Decimal(10,2)
+  Order      Order    @relation(fields: [OrderID], references: [OrderID])
+  Product    Product  @relation(fields: [ProductID], references: [ProductID])
+  @@id([OrderID, ProductID])
+}
+
+model OrderedService {
+  OrderID   Int
+  ServiceID Int
+  Price     Decimal @db.Decimal(10,2)
+  Order     Order   @relation(fields: [OrderID], references: [OrderID])
+  Service   Service @relation(fields: [ServiceID], references: [ServiceID])
+  @@id([OrderID, ServiceID])
+}
+
