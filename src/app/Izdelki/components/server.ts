@@ -33,7 +33,7 @@ export async function getAllIzdelki(): Promise<PlainIzdelki[]> {
             };
 
             // Add to our array
-            izdelkiArray.push(plainIzdelek);.
+            izdelkiArray.push(plainIzdelek);
         }
 
         // Return the complete array
