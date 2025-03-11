@@ -6,9 +6,38 @@ generator client {
 }
 
 datasource db {
-    provider = "mysql"
+    provider = "postgresql"
     url      = env("DATABASE_URL")
 }
+
+model Clanki {
+  ClankiID  Int  @id @default(autoincrement())
+  Ime String
+  Opis String?
+  Slika String
+  Url String
+}
+
+model Storitve {
+  StoritveID  Int  @id @default(autoincrement())
+  Ime String
+  Opis String?
+  Cena Int?
+}
+
+model Izdelki {
+  IzdelkiID  Int  @id @default(autoincrement())
+  Ime String
+  Opis String?
+  Cena Int?
+  Proizvajalec String
+  Slika String
+}
+
+
+
+
+
 
 model ProductCategory {
   CategoryID   Int    @id @default(autoincrement())
